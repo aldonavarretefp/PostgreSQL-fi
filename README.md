@@ -8,5 +8,8 @@ es portable,
 WAL para evitar perdidas de datos, <br> 
 Cumple propiedades ACID: 
 <ul>
-  <li>Atomicidad</li>
+  <li> **A** tomicidad</li>
+  <li> __C__ onsistencia</li>
+  <li>A** I **slamiento</li>
+  <li>** D **uradero</li>
 </ul>
