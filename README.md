@@ -96,3 +96,24 @@ Cumple propiedades ACID:
 
 
 </p>
+
+# Clase 3
+
+<p>
+    <b>DML</b>: Actualizando datos de una tabla, creando nuevas tablas, eliminando registros de las tablas,etc.<br>
+    Empezamos a ver qué es un Schema de PostgreSQL <br>
+    
+</p>
+
+# Clase 4
+
+<p>
+    <b>Partición de tablas</b>:Creando tablas hijas , PostgreSQL, en este caso solo puede particionar por <b>rango,lista o hash</b> y por <b>columnas.</b><br>
+    Teniamos en este caso una tabla padre con los campos id, nombre, transporte y le especificamos el tipo de particion que sería por lista.<br>
+    <ul>
+        <li>Create table viajeros_barco partition of viajeros for values in ('barco')<br></li>
+        <li>Create table viajeros_carro partition of viajeros for values in ('carro')<br></li>
+        <li>Aqui acabamos de crear dos particiones de viajeros de tipo lista</li>
+    </ul>
+    
+</p>
