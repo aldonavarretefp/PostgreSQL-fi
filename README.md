@@ -101,7 +101,7 @@ Cumple propiedades ACID:
 
 <p>
     <b>DML</b>: Actualizando datos de una tabla, creando nuevas tablas, eliminando registros de las tablas,etc.<br>
-    Empezamos a ver qué es un Schema de PostgreSQL <br>
+    Empezamos a ver qué es un Schema de PostgreSQL.<br>
     
 </p>
 
@@ -114,6 +114,47 @@ Cumple propiedades ACID:
         <li>Create table viajeros_barco partition of viajeros for values in ('barco')<br></li>
         <li>Create table viajeros_carro partition of viajeros for values in ('carro')<br></li>
         <li>Aqui acabamos de crear dos particiones de viajeros de tipo lista</li>
+        <li>alter table viajeros detach partition viajeros_auto</li>
+        <li>alter table viajeros atach partition viajeros_auto for values in ('auto') </li>
     </ul>
     
+</p>
+
+### Triggers
+
+<p>
+    Lenguaje Procedural<br>
+    <b>Definición:</b>Lenguaje de procedimiento cargable. Sus objetivos son<br>
+     <ul>
+        <li>Funciones y desencadenar eventos<br></li>
+        <li>Agregar estructuras de control al lenguaje SQL<br></li>
+        <li>Viene de la versión 9 en adelante<br></li>
+        <li>Nos permite varios lenguajes como java,perl,php,p<br></li>
+    </ul>
+    Se puede ocupar en cualquier lugar.<br>
+    Se ejecuta cada vez que se intenta cambiar una tabla.<br>
+    No se puede invocar a un trigger.<br>
+    Sin parametros.<br>
+    Son para mantener la integridad de los datos.<br>
+    Se ejecutan en las DML.<br>
+    <br>
+
+    > create or replace function tg_validacion()
+    > returns trigger as $$
+    > begin 
+    >  if new.id_empl is null then 
+    >  raise exception "El ID del empleado no puede estar vacio"
+    >  end if;
+    >
+    > if length (new.id_empl) != 10 then 
+    > raise exception "La longitud del id debe ser igual a 10"
+    > end if;
+    > 
+    >   if new.sueldo = 0 then 
+    >   raise exception 'Un empleado no trabaja de a gratis'
+    >   end if;
+    >end
+    >$$ language plpgsql
+    >create trigger before insert or update on empleado for each row execute procedure tg_validation();
+
 </p>
